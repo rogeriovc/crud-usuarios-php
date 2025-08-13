@@ -1,0 +1,123 @@
+# Sistema CRUD de Gerenciamento de Usuários
+
+Um sistema simples e completo para gerenciar usuários com as operações padrão de CRUD (Create, Read, Update, Delete).  
+Permite cadastrar, listar, editar e excluir usuários em uma interface limpa e responsiva, utilizando PHP e MySQL.
+
+---
+
+## Índice
+
+- [Sobre](#sobre)  
+- [Funcionalidades](#funcionalidades)  
+- [Tecnologias Utilizadas](#tecnologias-utilizadas)  
+- [Instalação](#instalação)  
+- [Uso](#uso)  
+- [Melhorias Futuras](#melhorias-futuras)  
+- [Contribuições](#contribuições)  
+- [Testes](#testes)  
+- [Licença](#licença)
+
+---
+
+## Sobre
+
+Este projeto é um sistema simples de CRUD que permite gerenciar usuários cadastrados em uma base de dados MySQL.  
+Você pode criar novos usuários, visualizar a lista, editar informações e excluir registros, tudo por meio de uma interface amigável e estilizada.
+
+---
+
+## Funcionalidades
+
+- Cadastro de novos usuários (Create)  
+- Listagem de usuários cadastrados (Read)  
+- Edição de dados do usuário (Update)  
+- Exclusão de usuários (Delete)  
+- Validação básica de formulário no cliente (JavaScript) e no servidor (PHP)  
+- Feedback visual com notificações após operações realizadas  
+- Interface responsiva, agradável e moderna  
+- Efeitos visuais: animações, ripple, loading, confirmações aprimoradas
+
+---
+
+## Tecnologias Utilizadas
+
+- PHP 7.x ou superior  
+- MySQL (ou MariaDB)  
+- HTML5, CSS3, JavaScript (Vanilla)  
+- AJAX (opcional dependendo de futuras melhorias)  
+- Servidor local, ex: XAMPP, WAMP, Laragon
+
+---
+
+## Instalação
+
+1. Clone este repositório:  
+   `git clone https://github.com/seu-usuario/seu-projeto.git`
+2. Configure um servidor local que suporte PHP e MySQL (XAMPP, WAMP, Laragon, etc).  
+3. Crie um banco de dados MySQL para o projeto.  
+4. Importe a estrutura da tabela `usuarios` se tiver arquivo `.sql` (crie manualmente pelo painel ou phpMyAdmin:  
+
+    ```
+    CREATE TABLE `usuarios` (
+      `id` INT NOT NULL AUTO_INCREMENT,
+      `nome` VARCHAR(100) NOT NULL,
+      `email` VARCHAR(100) NOT NULL,
+      `telefone` VARCHAR(15) NOT NULL,
+      PRIMARY KEY (`id`)
+    );
+    ```
+5. Configure o arquivo `conexao.php` com suas credenciais de conexão ao banco.  
+6. Acesse `http://localhost/seu-projeto/index.php` pelo navegador para usar o sistema.
+
+---
+
+## Uso
+
+- Clique em **Adicionar Novo Usuário** para cadastrar um novo usuário.  
+- Na lista, utilize os botões **Editar** para modificar um usuário e **Excluir** para remover.  
+- Preencha os campos obrigatórios (nome, email e telefone) e envie o formulário.  
+- Veja as notificações automáticas que confirmam o sucesso da ação.  
+
+---
+
+## Melhorias Futuras
+
+- Implementar sistema de autenticação e controle de acesso.  
+- Substituir queries diretas por **prepared statements** para maior segurança.  
+- Adicionar paginação e busca dinâmica para grandes volumes de dados.  
+- Suporte a temas (modo claro/escuro) e múltiplos idiomas.  
+- Implementar exportação dos dados (CSV, JSON).  
+- Adicionar testes unitários automatizados para garantir qualidade.  
+
+---
+
+## Contribuições
+
+Contribuições são muito bem-vindas!  
+Para colaborar:  
+- Abra uma issue para reportar sugestões ou bugs.  
+- Faça um fork do projeto e envie pull requests com suas melhorias.  
+- Siga o padrão e estilo do código já existente.  
+
+---
+
+## Testes
+
+Atualmente o projeto não possui testes automatizados implementados.  
+Planejo adicionar testes unitários com PHPUnit para garantir a manutenção e qualidade do sistema no futuro.
+
+---
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](https://opensource.org/licenses/MIT) — sinta-se livre para usar, modificar e distribuir!
+
+---
+
+## Contato
+
+Para dúvidas, sugestões ou parcerias, pode abrir issues no GitHub ou entrar em contato comigo diretamente.
+
+---
+
+

@@ -1,0 +1,501 @@
+.img_crud {
+    background: #0f111a;
+    margin: 40px auto;
+    display: block;
+    width: 10%;
+    filter: drop-shadow(0 0 5px #00bfff);
+}
+
+/* ==== Estilo do formulário ==== */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #121622;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 12px 25px rgba(0, 191, 255, 0.3);
+    animation: fadeIn 0.6s ease-in-out;
+    color: #e0e6f3;
+    border: 1px solid #00bfff;
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00bfff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #b0c7ff;
+    font-size: 0.95rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1.5px solid #2a2f45;
+    background: #1b1f31;
+    color: #cbd6f7;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.form-group input::placeholder {
+    color: #5a6a9f;
+    font-style: italic;
+}
+
+.form-group input:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 12px #00bfff;
+    outline: none;
+}
+
+/* Botão Salvar */
+.btn-submit {
+    background: linear-gradient(135deg, #00bfff 0%, #005f99 100%);
+    color: #f0f8ff;
+    padding: 14px;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    box-shadow: 0 6px 15px rgba(0, 191, 255, 0.4);
+}
+
+.btn-submit:hover {
+    background: linear-gradient(135deg, #0099ff 0%, #003f66 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.6);
+}
+
+.btn-submit:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
+}
+
+.link-voltar {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #5a95ff;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: color 0.3s ease;
+}
+
+.link-voltar:hover {
+    color: #00bfff;
+    text-decoration: underline;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body e fundo */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0d1117 0%, #1b2431 100%);
+    color: #cfd8f7;
+    min-height: 100vh;
+    padding: 20px;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Container principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: #141b2b;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 191, 255, 0.3);
+    overflow: hidden;
+    color: #e0e6f3;
+}
+
+/* Cabeçalho */
+.header {
+    background: linear-gradient(135deg, #00bfff 0%, #007acc 100%);
+    color: #f0f8ff;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 127, 255, 0.5);
+}
+
+.header h2 {
+    font-size: 2.8rem;
+    margin-bottom: 6px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.85;
+    font-weight: 500;
+}
+
+/* Área de conteúdo */
+.content {
+    padding: 30px;
+}
+
+/* Botão Adicionar Principal */
+.btn-add-main {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(135deg, #00bfff 0%, #007acc 100%);
+    color: #f0f8ff;
+    padding: 12px 24px;         /* <-- Tamanho reduzido */
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.05rem;         /* <-- Fonte levemente menor */
+    box-shadow: 0 10px 30px rgba(0, 191, 255, 0.4);
+    transition: all 0.35s ease;
+    border: none;
+    cursor: pointer;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+    margin-bottom: 24px;        /* <-- ESSE É O ESPAÇAMENTO embaixo do botão */
+    margin-top: 4px;            /* <-- Pode colocar um pequeno espaço acima também */
+}
+
+
+.btn-add-main:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 40px rgba(0, 191, 255, 0.7);
+    background: linear-gradient(135deg, #0099ff 0%, #005688 100%);
+}
+
+.btn-add-main:active {
+    transform: translateY(-1px);
+}
+
+/* Container da tabela */
+.table-container {
+    overflow-x: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0, 191, 255, 0.15);
+}
+
+/* Tabela em si */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #1a2338;
+    color: #cbd6f7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Cabeçalhos da tabela */
+th {
+    background: linear-gradient(135deg, #0099ff 0%, #0066cc 100%);
+    color: #f0f8ff;
+    padding: 22px 18px;
+    text-align: left;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-size: 0.95rem;
+    user-select: none;
+}
+
+/* Células comuns */
+td {
+    padding: 18px 16px;
+    border-bottom: 1px solid #2e3b56;
+    vertical-align: middle;
+    font-weight: 500;
+}
+
+/* Linhas da tabela hover */
+tr:hover {
+    background: linear-gradient(135deg, #0a1a34 0%, #1c2a55 100%);
+    transition: all 0.25s ease;
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.25);
+    z-index: 2;
+}
+
+/* Botões de ação */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Botões base */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #f0f8ff;
+    user-select: none;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -110%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+    border-radius: 30px;
+    pointer-events: none;
+}
+
+.btn:hover::before {
+    left: 110%;
+}
+
+/* Botão Editar */
+.btn-edit {
+    background: linear-gradient(135deg, #00bfff 0%, #007acc 100%);
+    box-shadow: 0 6px 18px rgba(0, 191, 255, 0.35);
+}
+
+.btn-edit:hover {
+    background: linear-gradient(135deg, #005fbf 0%, #003f66 100%);
+    box-shadow: 0 8px 25px rgba(0, 191, 255, 0.5);
+    transform: translateY(-3px);
+}
+
+/* Botão Excluir */
+.btn-delete {
+    background: linear-gradient(135deg, #ff4c4c 0%, #cc0000 100%);
+    box-shadow: 0 6px 15px rgba(255, 76, 76, 0.4);
+}
+
+.btn-delete:hover {
+    background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+    box-shadow: 0 8px 25px rgba(255, 76, 76, 0.6);
+    transform: translateY(-3px);
+}
+
+/* Ícones */
+.icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* Animação de entrada */
+.fade-in {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Ripple animation */
+@keyframes ripple-effect {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
+/* Botão pressionado */
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Responsividade para tablets */
+@media (max-width: 1024px) {
+    .container {
+        margin: 10px;
+    }
+
+    .content {
+        padding: 25px;
+    }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .header h2 {
+        font-size: 2rem;
+    }
+
+    .header p {
+        font-size: 0.95rem;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .btn-add-main {
+        width: 100%;
+        justify-content: center;
+        font-size: 1rem;
+        padding: 14px 28px;
+    }
+
+    .btn {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        gap: 8px;
+        align-items: stretch;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    td, th {
+        padding: 12px 10px;
+        font-size: 0.85rem;
+    }
+
+    .table-container {
+        margin: 0 -10px;
+        border-radius: 0;
+    }
+
+    table {
+        min-width: 580px;
+    }
+}
+
+/* Responsividade para telas muito pequenas */
+@media (max-width: 480px) {
+    .header {
+        padding: 20px;
+    }
+
+    .header h2 {
+        font-size: 1.6rem;
+    }
+
+    .content {
+        padding: 15px;
+    }
+
+    .btn-add-main {
+        font-size: 0.9rem;
+        padding: 12px 22px;
+    }
+
+    td, th {
+        padding: 8px 6px;
+        font-size: 0.75rem;
+    }
+
+    .icon {
+        width: 14px;
+        height: 14px;
+    }
+}
+
+/* Estados de foco para acessibilidade */
+.btn:focus,
+.btn-add-main:focus {
+    outline: 2px solid #00bfff;
+    outline-offset: 3px;
+}
+
+/* Melhorias para impressão */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+        color: black;
+    }
+
+    .container {
+        box-shadow: none;
+        border: 1px solid #ccc;
+        background: white;
+        color: black;
+    }
+
+    .btn-add-main,
+    .action-buttons {
+        display: none;
+    }
+
+    .header {
+        background: #f0f0f0 !important;
+        color: #333 !important;
+    }
+
+    th {
+        background: #f0f0f0 !important;
+        color: #333 !important;
+    }
+}
+
+/* Animações suaves para elementos que aparecem dinamicamente */
+.slide-in {
+    animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* FadeIn keyframe */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
