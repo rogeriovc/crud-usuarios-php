@@ -6,7 +6,7 @@
     filter: drop-shadow(0 0 5px #00bfff);
 }
 
-/* ==== Estilo do formulário ==== */
+
 .form-container {
     max-width: 500px;
     margin: 40px auto;
@@ -106,14 +106,14 @@
     text-decoration: underline;
 }
 
-/* Reset básico */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body e fundo */
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(135deg, #0d1117 0%, #1b2431 100%);
@@ -123,7 +123,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* Container principal */
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -134,7 +134,7 @@ body {
     color: #e0e6f3;
 }
 
-/* Cabeçalho */
+
 .header {
     background: linear-gradient(135deg, #00bfff 0%, #007acc 100%);
     color: #f0f8ff;
@@ -156,31 +156,31 @@ body {
     font-weight: 500;
 }
 
-/* Área de conteúdo */
+
 .content {
     padding: 30px;
 }
 
-/* Botão Adicionar Principal */
+
 .btn-add-main {
     display: inline-flex;
     align-items: center;
     gap: 12px;
     background: linear-gradient(135deg, #00bfff 0%, #007acc 100%);
     color: #f0f8ff;
-    padding: 12px 24px;         /* <-- Tamanho reduzido */
+    padding: 12px 24px;         
     text-decoration: none;
     border-radius: 50px;
     font-weight: 700;
-    font-size: 1.05rem;         /* <-- Fonte levemente menor */
+    font-size: 1.05rem;        
     box-shadow: 0 10px 30px rgba(0, 191, 255, 0.4);
     transition: all 0.35s ease;
     border: none;
     cursor: pointer;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     user-select: none;
-    margin-bottom: 24px;        /* <-- ESSE É O ESPAÇAMENTO embaixo do botão */
-    margin-top: 4px;            /* <-- Pode colocar um pequeno espaço acima também */
+    margin-bottom: 24px;        
+    margin-top: 4px;           
 }
 
 
@@ -194,14 +194,14 @@ body {
     transform: translateY(-1px);
 }
 
-/* Container da tabela */
+
 .table-container {
     overflow-x: auto;
     border-radius: 15px;
     box-shadow: 0 15px 35px rgba(0, 191, 255, 0.15);
 }
 
-/* Tabela em si */
+
 table {
     width: 100%;
     border-collapse: collapse;
@@ -210,7 +210,7 @@ table {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Cabeçalhos da tabela */
+
 th {
     background: linear-gradient(135deg, #0099ff 0%, #0066cc 100%);
     color: #f0f8ff;
@@ -223,7 +223,7 @@ th {
     user-select: none;
 }
 
-/* Células comuns */
+
 td {
     padding: 18px 16px;
     border-bottom: 1px solid #2e3b56;
@@ -231,7 +231,7 @@ td {
     font-weight: 500;
 }
 
-/* Linhas da tabela hover */
+
 tr:hover {
     background: linear-gradient(135deg, #0a1a34 0%, #1c2a55 100%);
     transition: all 0.25s ease;
@@ -240,14 +240,14 @@ tr:hover {
     z-index: 2;
 }
 
-/* Botões de ação */
+
 .action-buttons {
     display: flex;
     gap: 12px;
     align-items: center;
 }
 
-/* Botões base */
+
 .btn {
     display: inline-flex;
     align-items: center;
@@ -284,7 +284,7 @@ tr:hover {
     left: 110%;
 }
 
-/* Botão Editar */
+
 .btn-edit {
     background: linear-gradient(135deg, #00bfff 0%, #007acc 100%);
     box-shadow: 0 6px 18px rgba(0, 191, 255, 0.35);
@@ -296,7 +296,7 @@ tr:hover {
     transform: translateY(-3px);
 }
 
-/* Botão Excluir */
+
 .btn-delete {
     background: linear-gradient(135deg, #ff4c4c 0%, #cc0000 100%);
     box-shadow: 0 6px 15px rgba(255, 76, 76, 0.4);
@@ -308,19 +308,19 @@ tr:hover {
     transform: translateY(-3px);
 }
 
-/* Ícones */
+
 .icon {
     width: 18px;
     height: 18px;
     fill: currentColor;
 }
 
-/* Animação de entrada */
+
 .fade-in {
     animation: fadeIn 0.8s ease-out;
 }
 
-/* Ripple animation */
+
 @keyframes ripple-effect {
     from {
         transform: scale(0);
@@ -332,12 +332,12 @@ tr:hover {
     }
 }
 
-/* Botão pressionado */
+
 .btn:active {
     transform: scale(0.98);
 }
 
-/* Responsividade para tablets */
+
 @media (max-width: 1024px) {
     .container {
         margin: 10px;
@@ -348,7 +348,7 @@ tr:hover {
     }
 }
 
-/* Responsividade para celulares */
+
 @media (max-width: 768px) {
     body {
         padding: 10px;
@@ -404,7 +404,7 @@ tr:hover {
     }
 }
 
-/* Responsividade para telas muito pequenas */
+
 @media (max-width: 480px) {
     .header {
         padding: 20px;
@@ -434,7 +434,7 @@ tr:hover {
     }
 }
 
-/* Estados de foco para acessibilidade */
+
 .btn:focus,
 .btn-add-main:focus {
     outline: 2px solid #00bfff;
@@ -472,7 +472,7 @@ tr:hover {
     }
 }
 
-/* Animações suaves para elementos que aparecem dinamicamente */
+
 .slide-in {
     animation: slideIn 0.5s ease-out;
 }
@@ -488,7 +488,7 @@ tr:hover {
     }
 }
 
-/* FadeIn keyframe */
+
 @keyframes fadeIn {
     from {
         opacity: 0;
