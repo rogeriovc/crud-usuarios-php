@@ -27,6 +27,15 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}h1{
+    font-size: 20px; /* ou o tamanho que achar bom */
+    text-align: center;
+    margin-bottom: 20px;
+    color: #00bfff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .form-group {
@@ -90,10 +99,33 @@
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(0, 191, 255, 0.3);
 }
+.usuario-nome {
+    font-weight: 500;
+    margin-right: 10px;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.btn-logout {
+    display: inline-block;
+    padding: 6px 14px;
+    background: linear-gradient(90deg, #ff4d4d, #ff0000);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.btn-logout:hover {
+    background: linear-gradient(90deg, #ff0000, #b30000);
+}
 
 .link-voltar {
     display: inline-block;
-    margin-top: 20px;
+    margin-bottom: 15px; 
+    padding: 1%;
     text-decoration: none;
     color: #5a95ff;
     font-weight: 600;
@@ -105,6 +137,8 @@
     color: #00bfff;
     text-decoration: underline;
 }
+
+
 
 
 * {

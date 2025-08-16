@@ -1,20 +1,29 @@
 <?php
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
 include "conexao.php";
 
-// Valores padrão
+
 $id = "";
 $nome = "";
 $email = "";
 $telefone = "";
+$senha = ""; 
 
 // Editar usuário
 if (isset($_GET['edit'])) {
     $id = $_GET['edit'];
     $result = mysqli_query($conn, "SELECT * FROM usuarios WHERE id=$id");
-    $row = mysqli_fetch_assoc($result);
-    $nome = $row['nome'];
-    $email = $row['email'];
-    $telefone = $row['telefone'];
+    if ($row = mysqli_fetch_assoc($result)) {
+        $nome = $row['nome'];
+        $email = $row['email'];
+        $telefone = $row['telefone'];
+        // senha não é mostrada por segurança!
+    }
 }
 
 // Salvar ou atualizar
@@ -22,19 +31,30 @@ if (isset($_POST['salvar'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $telefone = $_POST['telefone'];
+    $senha = $_POST['senha']; // novo campo
 
+    // Novo usuário
     if ($_POST['id'] == "") {
-        mysqli_query($conn, "INSERT INTO usuarios (nome, email, telefone) VALUES ('$nome', '$email', '$telefone')");
-        header("Location: index.php?added=1");  // Redireciona com parâmetro 'added' para novo usuário
+        $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+        mysqli_query($conn, "INSERT INTO usuarios (nome, email, telefone, senha_hash) VALUES ('$nome', '$email', '$telefone', '$senha_hash')");
+        header("Location: index.php?added=1");
         exit;
     } else {
         $id = $_POST['id'];
-        mysqli_query($conn, "UPDATE usuarios SET nome='$nome', email='$email', telefone='$telefone' WHERE id=$id");
-        header("Location: index.php?updated=1");  // Redireciona com parâmetro 'updated' para edição
+        if ($senha != "") {
+            $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+            mysqli_query($conn, "UPDATE usuarios SET nome='$nome', email='$email', telefone='$telefone', senha_hash='$senha_hash' WHERE id=$id");
+        } else {
+            mysqli_query($conn, "UPDATE usuarios SET nome='$nome', email='$email', telefone='$telefone' WHERE id=$id");
+        }
+        header("Location: index.php?updated=1");
         exit;
     }
 }
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -44,38 +64,48 @@ if (isset($_POST['salvar'])) {
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
     <div class="header">
+    
         <h2><?php echo $id ? "Editar Usuário: " : "Sistema de CRUD: "; ?>Bem-Vindo!</h2>
     </div>
 
+    <a href="index.php" class="link-voltar">← Visualizar Usuários</a>
     <div class="content">
         <div class="form-container"> 
-            <form method="POST">
-                <input type="hidden" name="id" value="<?php echo $id; ?>">
-
-                <div class="form-group">
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" required placeholder="Nome" >
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" value="<?php echo $email; ?>" required  placeholder="teste@gmail.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="telefone">Telefone:</label>
-                    <input type="text" id="telefone" name="telefone" value="<?php echo $telefone; ?>" required placeholder="(DD) X XXXX-XXXX">
-                </div>
-
-                <button type="submit" name="salvar" class="btn-submit">Salvar</button>
-            </form>
-
-            <a href="index.php" class="link-voltar">← Visualizar Usuários</a>
-        </div>
+        <h1><?php echo $id ? "Editar Usuário" : "Novo Usuário"; ?></h1>
+<form method="POST">
+    
+    <input type="hidden" name="id" value="<?php echo $id; ?>">
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" value="<?php echo $nome; ?>" required placeholder="Nome">
     </div>
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<?php echo $email; ?>" required placeholder="teste@gmail.com">
+    </div>
+    <div class="form-group">
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" value="<?php echo $telefone; ?>" required placeholder="(DD) X XXXX-XXXX">
+    </div>
+    <div class="form-group">
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" <?php echo $id ? "" : "required"; ?> placeholder="Digite a senha do usuário">
+        <?php if ($id) echo "<small>Deixe em branco para não alterar a senha.</small>"; ?>
+    </div>
+    <button type="submit" name="salvar" class="btn-submit">Salvar</button>
+</form>
 </div>
+</div>
+
+
+
+</div>
+
+</body>
+</html>
+
 
 <script>
     // Máscara de telefone (formato brasileiro)

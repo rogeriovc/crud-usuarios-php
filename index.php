@@ -1,4 +1,15 @@
 <?php 
+session_start();
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit;
+}
+if (isset($_SESSION['usuario_nome'])) {
+    echo "<span class='usuario-nome'>Olá, " . htmlspecialchars($_SESSION['usuario_nome']) . "</span>";
+    echo "<a href='logout.php' class='btn-logout'>Sair</a>";
+}
+
+
 include "conexao.php";
 
 // Excluir usuário
