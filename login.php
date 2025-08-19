@@ -1,6 +1,6 @@
 <?php
-include "conexao.php";
 session_start();
+include "conexao.php";
 
 $msg = '';
 
@@ -9,20 +9,16 @@ if (isset($_POST['login'])) {
     $senha = $_POST['senha'];
 
     $query = "SELECT * FROM usuarios WHERE email = ?";
-
-    // Prepare statement e cheque se foi bem-sucedido
     if ($stmt = mysqli_prepare($conn, $query)) {
-      
         mysqli_stmt_bind_param($stmt, "s", $email);
-        
         mysqli_stmt_execute($stmt);
-
-        // Pega resultado
         $result = mysqli_stmt_get_result($stmt);
+
         if ($row = mysqli_fetch_assoc($result)) {
             if (password_verify($senha, $row['senha_hash'])) {
                 $_SESSION['usuario_id'] = $row['id'];
                 $_SESSION['usuario_nome'] = $row['nome'];
+                $_SESSION['usuario_email'] = $row['email'];
                 header("Location: index.php");
                 exit;
             } else {
@@ -33,7 +29,6 @@ if (isset($_POST['login'])) {
         }
         mysqli_stmt_close($stmt);
     } else {
-      
         die("Erro na preparação da query: " . mysqli_error($conn));
     }
 }
@@ -61,8 +56,7 @@ if (isset($_POST['login'])) {
                 <input type="password" id="senha" name="senha" required placeholder="********">
             </div>
             <button type="submit" name="login" class="btn-submit">Entrar</button>
-            <a href="register.php">Ainda não tem conta? Cadastre-se</a>
-
+            <a href="register.php" class="link-voltar">Ainda não tem conta? Cadastre-se</a>
         </form>
     </div>
 </body>

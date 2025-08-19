@@ -65,7 +65,7 @@ if (isset($_POST['cadastrar'])) {
             <button type="submit" name="cadastrar" class="btn-submit">Cadastrar</button>
         </form>
         <a href="login.php" class="link-voltar">Já tem conta? Faça login</a>
-        <a href="login.php">Já é cadastrado? Faça login</a>
+        
 
     </div>
     <script>

@@ -1,4 +1,6 @@
 <?php
+$adm_email = "rogervclaporta@gmail.com";
+
 session_start();
 if (!isset($_SESSION['usuario_id'])) {
     header("Location: login.php");
@@ -7,22 +9,30 @@ if (!isset($_SESSION['usuario_id'])) {
 
 include "conexao.php";
 
-
 $id = "";
 $nome = "";
 $email = "";
 $telefone = "";
-$senha = ""; 
+$senha = "";
 
 // Editar usuário
 if (isset($_GET['edit'])) {
-    $id = $_GET['edit'];
+    $id = intval($_GET['edit']);
     $result = mysqli_query($conn, "SELECT * FROM usuarios WHERE id=$id");
     if ($row = mysqli_fetch_assoc($result)) {
+        // Bloquear edição se não for o próprio usuário ou admin
+        if ($_SESSION['usuario_id'] != $id && $_SESSION['usuario_email'] != $adm_email) {
+            echo "<script>alert('Você não tem permissão para editar este usuário.'); window.location='index.php';</script>";
+            exit;
+        }
+
         $nome = $row['nome'];
         $email = $row['email'];
         $telefone = $row['telefone'];
         // senha não é mostrada por segurança!
+    } else {
+        echo "<script>alert('Usuário não encontrado.'); window.location='index.php';</script>";
+        exit;
     }
 }
 
@@ -40,7 +50,13 @@ if (isset($_POST['salvar'])) {
         header("Location: index.php?added=1");
         exit;
     } else {
-        $id = $_POST['id'];
+        $id = intval($_POST['id']);
+        // Verifica permissão para editar
+        if ($_SESSION['usuario_id'] != $id && $_SESSION['usuario_email'] != $adm_email) {
+            echo "<script>alert('Você não tem permissão para editar este usuário.'); window.location='index.php';</script>";
+            exit;
+        }
+
         if ($senha != "") {
             $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
             mysqli_query($conn, "UPDATE usuarios SET nome='$nome', email='$email', telefone='$telefone', senha_hash='$senha_hash' WHERE id=$id");
@@ -53,8 +69,6 @@ if (isset($_POST['salvar'])) {
 }
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -65,17 +79,16 @@ if (isset($_POST['salvar'])) {
 <body>
 
     <div class="container">
-    <div class="header">
-    
-        <h2><?php echo $id ? "Editar Usuário: " : "Sistema de CRUD: "; ?>Bem-Vindo!</h2>
-    </div>
+        <div class="header">
+            <h2><?php echo $id ? "Editar Usuário: " : "Sistema de CRUD: "; ?>Bem-Vindo!</h2>
+        </div>
 
-    <a href="index.php" class="link-voltar">← Visualizar Usuários</a>
-    <div class="content">
-        <div class="form-container"> 
-        <h1><?php echo $id ? "Editar Usuário" : "Novo Usuário"; ?></h1>
+        <a href="index.php" class="link-voltar">← Visualizar Usuários</a>
+        <div class="content">
+            <div class="form-container"> 
+                <h1><?php echo $id ? "Editar Usuário" : "Novo Usuário"; ?></h1>
 <form method="POST">
-    
+
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <div class="form-group">
         <label for="nome">Nome:</label>
@@ -92,20 +105,16 @@ if (isset($_POST['salvar'])) {
     <div class="form-group">
         <label for="senha">Senha:</label>
         <input type="password" id="senha" name="senha" <?php echo $id ? "" : "required"; ?> placeholder="Digite a senha do usuário">
-        <?php if ($id) echo "<small>Deixe em branco para não alterar a senha.</small>"; ?>
+        <?php if ($id) echo "<small>Deixe em branco para não alterar a senha (Ou digite uma nova senha).</small>"; ?>
     </div>
     <button type="submit" name="salvar" class="btn-submit">Salvar</button>
 </form>
 </div>
 </div>
-
-
-
-</div>
+    </div>
 
 </body>
 </html>
-
 
 <script>
     // Máscara de telefone (formato brasileiro)
@@ -135,6 +144,3 @@ if (isset($_POST['salvar'])) {
         }
     });
 </script>
-
-</body>
-</html>
