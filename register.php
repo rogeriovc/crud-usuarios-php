@@ -9,7 +9,7 @@ if (isset($_POST['cadastrar'])) {
     $senha = $_POST['senha'];
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Verificar se email já existe
+    // Verificar  email se  existe
     $query = "SELECT id FROM usuarios WHERE email = ?";
     $stmt = mysqli_prepare($conn, $query);
     mysqli_stmt_bind_param($stmt, "s", $email);
@@ -21,9 +21,10 @@ if (isset($_POST['cadastrar'])) {
     } else {
         $insert = "INSERT INTO usuarios (nome, email, telefone, senha_hash) VALUES (?, ?, ?, ?)";
         $stmt = mysqli_prepare($conn, $insert);
-        mysqli_stmt_bind_param($stmt, "ssss", $nome, $email,$telefone, $senha_hash);
+        mysqli_stmt_bind_param($stmt, "ssss", $nome, $email, $telefone, $senha_hash);
         if (mysqli_stmt_execute($stmt)) {
-            header("Location: login.php");
+            
+            header("Location: login.php?sucesso=1");
             exit;
         } else {
             $msg = "Erro ao cadastrar.";
@@ -56,7 +57,7 @@ if (isset($_POST['cadastrar'])) {
             </div>
             <div class="form-group">
                 <label for="telefone">Telefone:</label>
-                <input type="text" id="telefone" name="telefone"  required placeholder="(DD) X XXXX-XXXX">
+                <input type="text" id="telefone" name="telefone" required placeholder="(DD) X XXXX-XXXX">
             </div>
             <div class="form-group">
                 <label for="senha">Senha:</label>
@@ -65,36 +66,9 @@ if (isset($_POST['cadastrar'])) {
             <button type="submit" name="cadastrar" class="btn-submit">Cadastrar</button>
         </form>
         <a href="login.php" class="link-voltar">Já tem conta? Faça login</a>
-        
-
     </div>
-    <script>
-    // Máscara de telefone (formato brasileiro)
-    const telefoneInput = document.getElementById('telefone');
-    telefoneInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, ''); // remove tudo que não é número
-        if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
 
-        if (value.length > 6) {
-            e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
-        } else if (value.length > 2) {
-            e.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-        } else {
-            e.target.value = value;
-        }
-    });
-
-    // Validação de email simples
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(e) {
-        const email = document.getElementById('email').value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailRegex.test(email)) {
-            alert('Por favor, insira um email válido!');
-            e.preventDefault();
-        }
-    });
-</script>
+    <script src="mascaras.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -59,5 +59,21 @@ if (isset($_POST['login'])) {
             <a href="register.php" class="link-voltar">Ainda não tem conta? Cadastre-se</a>
         </form>
     </div>
+
+    
+    <script src="script.js"></script>
+
+    <?php if (isset($_GET['sucesso']) && $_GET['sucesso'] == 1): ?>
+    <script>
+        showNotification("Usuário cadastrado com sucesso!", "success");
+
+       
+        if (window.history.replaceState) {
+            const url = window.location.href.split("?")[0];
+            window.history.replaceState({}, document.title, url);
+        }
+    </script>
+    <?php endif; ?>
+    <script src="mascaras.js" ></script>
 </body>
 </html>

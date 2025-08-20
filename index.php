@@ -14,7 +14,7 @@ if (isset($_SESSION['usuario_nome'])) {
 
 include "conexao.php";
 
-// Excluir usuário com verificação de permissão
+
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
     $resCheck = mysqli_query($conn, "SELECT email FROM usuarios WHERE id=$id");

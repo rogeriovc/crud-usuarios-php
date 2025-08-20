@@ -1,123 +1,53 @@
-# Sistema CRUD de Gerenciamento de Usuários
+# Sistema CRUD de Usuários em PHP
 
-Um sistema simples e completo para gerenciar usuários com as operações padrão de CRUD (Create, Read, Update, Delete).  
-Permite cadastrar, listar, editar e excluir usuários em uma interface limpa e responsiva, utilizando PHP e MySQL.
-
----
-
-## Índice
-
-- [Sobre](#sobre)  
-- [Funcionalidades](#funcionalidades)  
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)  
-- [Instalação](#instalação)  
-- [Uso](#uso)  
-- [Melhorias Futuras](#melhorias-futuras)  
-- [Contribuições](#contribuições)  
-- [Testes](#testes)  
-- [Licença](#licença)
-
----
-
-## Sobre
-
-Este projeto é um sistema simples de CRUD que permite gerenciar usuários cadastrados em uma base de dados MySQL.  
-Você pode criar novos usuários, visualizar a lista, editar informações e excluir registros, tudo por meio de uma interface amigável e estilizada.
+Sistema para gerenciar usuários com operações CRUD (Criar, Ler, Atualizar e Deletar), utilizando PHP, MySQL e interface responsiva.
 
 ---
 
 ## Funcionalidades
 
-- Cadastro de novos usuários (Create)  
-- Listagem de usuários cadastrados (Read)  
-- Edição de dados do usuário (Update)  
-- Exclusão de usuários (Delete)  
-- Validação básica de formulário no cliente (JavaScript) e no servidor (PHP)  
-- Feedback visual com notificações após operações realizadas  
-- Interface responsiva, agradável e moderna  
-- Efeitos visuais: animações, ripple, loading, confirmações aprimoradas
-
----
-
-## Tecnologias Utilizadas
-
-- PHP 7.x ou superior  
-- MySQL (ou MariaDB)  
-- HTML5, CSS3, JavaScript (Vanilla)  
-- AJAX (opcional dependendo de futuras melhorias)  
-- Servidor local, ex: XAMPP, WAMP, Laragon
+- Cadastro, edição e exclusão de usuários com senha segura (hash)  
+- Login e autenticação com permissões para usuário e admin  
+- Validação de formulários cliente e servidor  
+- Controle de acesso para editar/excluir apenas usuário próprio ou admin  
+- Recuperação segura de senha via token e e-mail (em implementação)  
+- Feedback visual e interface amigável
 
 ---
 
 ## Instalação
 
-1. Clone este repositório:  
-   `git clone https://github.com/rogeriovc/crud-usuarios-php`
-2. Configure um servidor local que suporte PHP e MySQL (XAMPP, WAMP, Laragon, etc).  
-3. Crie um banco de dados MySQL para o projeto.  
-4. Importe a estrutura da tabela `usuarios` se tiver arquivo `.sql` (crie manualmente pelo painel ou phpMyAdmin:  
-
-    ```
-   CREATE TABLE usuarios (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL,
-    telefone VARCHAR(15) NOT NULL,
-    senha_hash VARCHAR(255) NOT NULL
-);
-
-    ```
-5. Configure o arquivo `conexao.php` com suas credenciais de conexão ao banco.  
-6. Acesse `http://localhost/crud_php/register.php` pelo navegador para usar o sistema.
+1. Clone o repositório:  
+   `git clone https://github.com/rogeriovc/crud-usuarios-php`  
+2. Configure servidor PHP + MySQL (XAMPP, WAMP, etc)  
+3. Crie banco e tabela `usuarios` com campo `senha_hash` conforme o esquema  
+4. Configure `conexao.php` com suas credenciais  
+5. Acesse `http://localhost/crud_php/register.php` para cadastro e `login.php` para autenticação
 
 ---
 
 ## Uso
 
-- Clique em **Adicionar Novo Usuário** para cadastrar um novo usuário.  
-- Na lista, utilize os botões **Editar** para modificar um usuário e **Excluir** para remover.  
-- Preencha os campos obrigatórios (nome, email e telefone) e envie o formulário.  
-- Veja as notificações automáticas que confirmam o sucesso da ação.  
+- Cadastre-se antes de logar  
+- Use botões para editar/excluir (restrito)  
+- Preencha senha no cadastro e pode alterar na edição (campo opcional)  
+- Receba notificações após ações
 
 ---
 
-## Melhorias Futuras
+## Melhoria futura
 
-- Implementar sistema de autenticação e controle de acesso.  
-- Substituir queries diretas por **prepared statements** para maior segurança.  
-- Adicionar paginação e busca dinâmica para grandes volumes de dados.  
-- Suporte a temas (modo claro/escuro) e múltiplos idiomas.  
-- Implementar exportação dos dados (CSV, JSON).  
-- Adicionar testes unitários automatizados para garantir qualidade.  
-
----
-
-## Contribuições
-
-Contribuições são muito bem-vindas!  
-Para colaborar:  
-- Abra uma issue para reportar sugestões ou bugs.  
-- Faça um fork do projeto e envie pull requests com suas melhorias.  
-- Siga o padrão e estilo do código já existente.  
-
----
-
-## Testes
-
-Atualmente o projeto não possui testes automatizados implementados.  
-Planejo adicionar testes unitários com PHPUnit para garantir a manutenção e qualidade do sistema no futuro.
+- Testes unitários automatizados  
+- Paginação e busca dinâmica  
+- Temas e multilínguas  
+- Exportação dos dados  
+- Sistema completo de recuperação de senha
 
 ---
 
 ## Licença
 
-Este projeto está licenciado sob a [MIT License](https://opensource.org/licenses/MIT) — sinta-se livre para usar, modificar e distribuir!
-
----
-
-## Contato
-
-Para dúvidas, sugestões ou parcerias, pode abrir issues no GitHub ou entrar em contato comigo diretamente.
+MIT License — use, modifique e distribua livremente.
 
 ---
 

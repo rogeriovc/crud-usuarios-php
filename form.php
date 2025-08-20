@@ -20,7 +20,7 @@ if (isset($_GET['edit'])) {
     $id = intval($_GET['edit']);
     $result = mysqli_query($conn, "SELECT * FROM usuarios WHERE id=$id");
     if ($row = mysqli_fetch_assoc($result)) {
-        // Bloquear edição se não for o próprio usuário ou admin
+        
         if ($_SESSION['usuario_id'] != $id && $_SESSION['usuario_email'] != $adm_email) {
             echo "<script>alert('Você não tem permissão para editar este usuário.'); window.location='index.php';</script>";
             exit;
@@ -29,14 +29,14 @@ if (isset($_GET['edit'])) {
         $nome = $row['nome'];
         $email = $row['email'];
         $telefone = $row['telefone'];
-        // senha não é mostrada por segurança!
+      
     } else {
         echo "<script>alert('Usuário não encontrado.'); window.location='index.php';</script>";
         exit;
     }
 }
 
-// Salvar ou atualizar
+// Salvar atualizar
 if (isset($_POST['salvar'])) {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
@@ -51,7 +51,7 @@ if (isset($_POST['salvar'])) {
         exit;
     } else {
         $id = intval($_POST['id']);
-        // Verifica permissão para editar
+        // Verifica permissão  editar
         if ($_SESSION['usuario_id'] != $id && $_SESSION['usuario_email'] != $adm_email) {
             echo "<script>alert('Você não tem permissão para editar este usuário.'); window.location='index.php';</script>";
             exit;
@@ -116,31 +116,4 @@ if (isset($_POST['salvar'])) {
 </body>
 </html>
 
-<script>
-    // Máscara de telefone (formato brasileiro)
-    const telefoneInput = document.getElementById('telefone');
-    telefoneInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, ''); // remove tudo que não é número
-        if (value.length > 11) value = value.slice(0, 11); // limita a 11 dígitos
-
-        if (value.length > 6) {
-            e.target.value = `(${value.slice(0, 2)}) ${value.slice(2, 7)}-${value.slice(7)}`;
-        } else if (value.length > 2) {
-            e.target.value = `(${value.slice(0, 2)}) ${value.slice(2)}`;
-        } else {
-            e.target.value = value;
-        }
-    });
-
-    // Validação de email simples
-    const form = document.querySelector('form');
-    form.addEventListener('submit', function(e) {
-        const email = document.getElementById('email').value;
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!emailRegex.test(email)) {
-            alert('Por favor, insira um email válido!');
-            e.preventDefault();
-        }
-    });
-</script>
+<script src="mascaras.js" ></script>
