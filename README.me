@@ -20,7 +20,14 @@ Sistema para gerenciar usuários com operações CRUD (Criar, Ler, Atualizar e D
 1. Clone o repositório:  
    `git clone https://github.com/rogeriovc/crud-usuarios-php`  
 2. Configure servidor PHP + MySQL (XAMPP, WAMP, etc)  
-3. Crie banco e tabela `usuarios` com campo `senha_hash` conforme o esquema  
+3. Crie banco e tabela `usuarios` com campo `senha_hash` conforme o esquema:
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    telefone VARCHAR(15) NOT NULL,
+   senha_hash VARCHAR(255) NOT NULL
+);
 4. Configure `conexao.php` com suas credenciais  
 5. Acesse `http://localhost/crud_php/register.php` para cadastro e `login.php` para autenticação
 
